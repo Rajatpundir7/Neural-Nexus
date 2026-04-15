@@ -18,5 +18,34 @@
     13. stealing  -> 100 Videos
     14. vandalism -> 50 Videos
 
-# ExPLANATION: 
-    Data set is divided into 14 classes. And we are using 16 Frames per video  
+# Approach: 
+    Data set is divided into 14 classes. 
+    Color channels used: 3(BGR) -> Cv2  only work with BGR.
+    8 Batches and 16 frames per Pass.
+
+    #### Image Size(videos are divided into images): 112 X 112
+    Preprocessing:
+    ## Step 0:Data loading
+    ## Step 1: Frame Extraction.
+    ## Step 2: Normalization
+    ## step 3: Divided into Feature and classes.
+    ## step 4: Data set Balancing 
+    ## step 5: Splitting training and testing data.
+
+
+**Architecture: CNN Backbone + LSTM for Temporal Understanding**
+
+```
+Input Video (16 frames)
+ ↓
+MobileNetV2 (pretrained on ImageNet) — extracts features from each frame
+ ↓
+TimeDistributed wrapper — applies CNN to each frame independently
+ ↓
+LSTM Layer — learns patterns across time (temporal sequence)
+ ↓
+Dense + Dropout — reduces overfitting
+ ↓
+Softmax Output — 14 class probabilities
+```
+    
